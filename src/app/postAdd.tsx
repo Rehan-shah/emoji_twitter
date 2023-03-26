@@ -2,21 +2,32 @@
 import Add from "./add"
 import { z } from "zod";
 import { useUser } from "@clerk/nextjs";
+import Img from 'next/image';
 
 function postAdd<T>({ setList }: { setList: T }) {
-  const emojiSchema = z.string().emoji();
+  const emojiSchema = z.string().emoji().min(1).max(280);
 
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { user, isLoaded } = useUser();
+
   async function HandleChange() {
     let content = emojiSchema.parse(document.getElementById("content").value);
-    setList((preValue) => [content, ...preValue]);
+    let userName;
+    (!!user?.username ? userName = user?.username : (userName = (user?.firstName + "-" + user?.lastName)));
+    let product = {
+      content: content,
+      userName: userName,
+      profilePic: user?.profileImageUrl,
+      createdAt: new Date(),
+      userld: user?.id
+    }
+    setList((preValue) => [product, ...preValue]);
     fetch("http://localhost:3000/api/mutate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ content: content })
-    })
+    }).then((e) => console.log(e))
   }
 
   function enterComm(e: React.KeyboardEvent<HTMLFormElement>) {
@@ -27,16 +38,17 @@ function postAdd<T>({ setList }: { setList: T }) {
 
   function handleKeyPress(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevents the default behavior of the enter key
+      e.preventDefault();
     }
   }
+
   return (
     <>
       <form onKeyDown={enterComm}>
         <div className="flex items-center justify-start">
-          <img className="w-14 h-14 ml-4 rounded-full" src={user?.profileImageUrl} />
+          <Img className="w-14 h-14 ml-4 rounded-full" width={56} height={56} src={user?.profileImageUrl} />
           <div className="pt-[15px] pl-5">
-            <h1>@{user?.username}</h1>
+            <h1>@{!!user?.username ? user?.username : user?.fullName.replace(/\s+/g, '-')}</h1>
             <textarea
               id="content"
               ng-trim="false"
