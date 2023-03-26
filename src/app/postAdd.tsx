@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useUser } from "@clerk/nextjs";
 import Img from 'next/image';
 
-function postAdd<T>({ setList }: { setList: T }) {
+function PostAdd<T>({ setList }: { setList: T }) {
   const emojiSchema = z.string().emoji().min(1).max(280);
 
   const { user, isLoaded } = useUser();
@@ -67,4 +67,4 @@ function postAdd<T>({ setList }: { setList: T }) {
   )
 }
 
-export default postAdd
+export default PostAdd
