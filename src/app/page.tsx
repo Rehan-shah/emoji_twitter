@@ -11,7 +11,7 @@ const HomePage = async () => {
   let user = await currentUser();
   let posts: Post[] = await db.select().from(post);
 
-  let res = await Promise.all(posts.map(async (post) => {
+  let res: postJoin[] = await Promise.all(posts.map(async (post) => {
     let user = await clerkClient.users.getUser(post.userId)
     let userName;
     (!!user.username ? userName = user.username : (userName = (user.firstName + "-" + user.lastName)));

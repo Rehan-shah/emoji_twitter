@@ -1,16 +1,21 @@
 "use client"
-import Add from "./add"
 import { z } from "zod";
 import { useUser } from "@clerk/nextjs";
 import Img from 'next/image';
+import { SetStateAction } from "react";
 
-function PostAdd<T>({ setList }: { setList: T }) {
+function PostAdd({ setList }: { setList: React.Dispatch<SetStateAction<any>> }) {
   const emojiSchema = z.string().emoji().min(1).max(280);
 
   const { user, isLoaded } = useUser();
 
   async function HandleChange() {
-    let content = emojiSchema.parse(document.getElementById("content").value);
+    let content;
+    let element = document.getElementById("content");
+    if (element instanceof HTMLInputElement) {
+      content = emojiSchema.parse(element.value);
+    }
+
     let userName;
     (!!user?.username ? userName = user?.username : (userName = (user?.firstName + "-" + user?.lastName)));
     let product = {
@@ -20,7 +25,7 @@ function PostAdd<T>({ setList }: { setList: T }) {
       createdAt: new Date(),
       userld: user?.id
     }
-    setList((preValue) => [product, ...preValue]);
+    setList((preValue: any) => [product, ...preValue]);
     fetch("http://localhost:3000/api/mutate", {
       method: "POST",
       headers: {
@@ -46,9 +51,9 @@ function PostAdd<T>({ setList }: { setList: T }) {
     <>
       <form onKeyDown={enterComm}>
         <div className="flex items-center justify-start">
-          <Img className="w-14 h-14 ml-4 rounded-full" width={56} height={56} src={user?.profileImageUrl} />
+          <Img className="w-14 h-14 ml-4 rounded-full" width={56} height={56} alt="profilepic" src={user?.profileImageUrl as string} />
           <div className="pt-[15px] pl-5">
-            <h1>@{!!user?.username ? user?.username : user?.fullName.replace(/\s+/g, '-')}</h1>
+            <h1>@{!!user?.username ? user?.username : user?.fullName?.replace(/\s+/g, '-')}</h1>
             <textarea
               id="content"
               ng-trim="false"

@@ -14,6 +14,16 @@ import { useAuth } from "@clerk/nextjs"
 //   )
 // }
 
+
+interface postJoin {
+  createdAt: string,
+  profilePic: string,
+  userName: string,
+  id: number,
+  content: string,
+  userId: string,
+};
+
 export default function Home({ set }: { set: postJoin[] }) {
   let { isSignedIn } = useAuth();
 
@@ -24,7 +34,7 @@ export default function Home({ set }: { set: postJoin[] }) {
       {!isSignedIn && <a href="/sign-up">sigin in</a>}
       <div className='w-1/3 mx-auto border-b-black border mt-10'>
         <PostAdd setList={setList} />
-        {lists.map((list, i) => <Post content={list.content} userName={list.userName} date={list.createdAt} profilePic={list.profilePic} key={i} />)} </div>
+        {lists.map((list, i) => <Post content={list.content} userName={list.userName} date={list.createdAt as string} profilePic={list.profilePic} key={i} />)} </div>
     </>
   )
 }

@@ -19,5 +19,3 @@ export const post = mysqlTable('post', {
 export type Post = InferModel<typeof post>;
 export type newPost = InferModel<typeof post, 'insert'>;
 
-// export type User = InferModel<typeof user>;
-// export type newUser = InferModel<typeof user, 'insert'>;
