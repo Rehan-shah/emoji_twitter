@@ -1,5 +1,4 @@
 "use client"
-import { motion } from "framer-motion"
 import { Post as post } from "@/db/schema"
 import PostAdd from './postAdd'
 import { useState } from 'react'
@@ -27,14 +26,7 @@ function SignIn() {
 
 function Modal() {
   return (
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ rotate: 180, scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 20
-      }} className="bg-red-200">Please only use emojis </motion.div>
+    <div className="bg-red-200">Please only use emojis </div>
   )
 }
 
