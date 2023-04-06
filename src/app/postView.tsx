@@ -1,18 +1,11 @@
 "use client"
-
+import { motion } from "framer-motion"
 import { Post as post } from "@/db/schema"
 import PostAdd from './postAdd'
 import { useState } from 'react'
 import Post from './post'
 import { SignOutButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs"
-
-// function PostNow({ content }: { content: string }) {
-
-//   return (
-//     <div className="border">{content}</div>
-//   )
-// }
 
 
 interface postJoin {
@@ -24,17 +17,39 @@ interface postJoin {
   userId: string,
 };
 
+function SignIn() {
+  return (
+    <div>
+      <a href="/sign-up"><button>SignIn to tweet</button></a>
+    </div>
+  )
+}
+
+function Modal() {
+  return (
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ rotate: 180, scale: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }} className="bg-red-200">Please only use emojis </motion.div>
+  )
+}
+
 export default function Home({ set }: { set: postJoin[] }) {
   let { isSignedIn } = useAuth();
 
-  const [lists, setList] = useState(set.reverse())
+  const [lists, setList] = useState(set.reverse());
+  const [vis, setVis] = useState(false);
   return (
     <>
-      {!!isSignedIn && <SignOutButton />}
-      {!isSignedIn && <a href="/sign-up">sigin in</a>}
-      <div className='w-1/3 mx-auto border-b-black border mt-10'>
-        <PostAdd setList={setList} />
-        {lists.map((list, i) => <Post content={list.content} userName={list.userName} date={list.createdAt as string} profilePic={list.profilePic} key={i} />)} </div>
+      {/* {!!isSignedIn && <SignOutButton />} */}
+      <div className='w-2/5 mx-auto border border-[#e6e7eb] border-b-transparent border-t-transparent'>
+        {isSignedIn ? <PostAdd setList={setList} setVis={setVis} /> : <SignIn />}
+        {vis && <Modal />}
+        {lists.map((list, i) => <Post content={list.content} userName={list.userName} date={list.createdAt} profilePic={list.profilePic} key={i} />)} </div>
     </>
   )
 }

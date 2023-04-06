@@ -22,6 +22,7 @@ const HomePage = async () => {
       userName: userName
     }
   }))
+
   return (
     <>
       <PostView set={res} />

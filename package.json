@@ -15,7 +15,8 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "dayjs": "^1.11.7",
-    "drizzle-orm": "^0.22.0-cbee773",
+    "dotenv": "^16.0.3",
+    "drizzle-orm": "^0.23.6",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "mysql2": "^2.3.3",
@@ -27,7 +28,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
-    "drizzle-kit": "^0.17.0-0cf3fe9",
+    "drizzle-kit": "^0.17.1-609a4f0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
   }

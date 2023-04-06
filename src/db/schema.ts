@@ -1,13 +1,11 @@
 import {
-  InferModel,
   text,
   mysqlTable,
   serial,
-  timestamp,
   varchar,
   date,
 } from 'drizzle-orm/mysql-core';
-
+import { InferModel } from 'drizzle-orm';
 
 export const post = mysqlTable('post', {
   id: serial('id').primaryKey(),

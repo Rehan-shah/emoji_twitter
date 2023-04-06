@@ -1,5 +1,0 @@
-{
-  "out": "./migrations",
-  "schema": "./src/db",
-  "connectionString": "mysql://ak2tg9y563ttzty6pm2p:pscale_pw_xugfG25YTo2qi3dc1WitFRry4JlqR9E98tlOFHyDU8g@ap-south.connect.psdb.cloud:3306/emoji-twitter?ssl={\"rejectUnathorized\":true}"
-}

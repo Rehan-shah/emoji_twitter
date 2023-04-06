@@ -5,7 +5,7 @@ const nextConfig = {
     esmExternals: true
   },
   images: {
-    domains: ['images.clerk.dev'],
+    domains: ['images.clerk.dev', "api.dicebear.com", "picsum.photos"],
   },
 }
 
