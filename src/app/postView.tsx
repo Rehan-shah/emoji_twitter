@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Post from './post'
 import { SignOutButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs"
+import { listenerCount } from "process"
 
 
 interface postJoin {
@@ -30,10 +31,12 @@ function Modal() {
   )
 }
 
+
+
 export default function Home({ set }: { set: postJoin[] }) {
   let { isSignedIn } = useAuth();
 
-  const [lists, setList] = useState(set.reverse());
+  const [lists, setList] = useState(set);
   const [vis, setVis] = useState(false);
   return (
     <>
@@ -41,7 +44,8 @@ export default function Home({ set }: { set: postJoin[] }) {
       <div className='w-2/5 mx-auto border border-[#e6e7eb] border-b-transparent border-t-transparent'>
         {isSignedIn ? <PostAdd setList={setList} setVis={setVis} /> : <SignIn />}
         {vis && <Modal />}
-        {lists.map((list, i) => <Post content={list.content} userName={list.userName} date={list.createdAt} profilePic={list.profilePic} key={i} />)} </div>
+        {lists.map((list, i) => <Post content={list.content} userId={list.userId} userName={list.userName} date={list.createdAt} profilePic={list.profilePic} id={list.id} key={i} />)} </div>
     </>
   )
 }
+

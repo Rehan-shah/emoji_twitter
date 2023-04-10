@@ -36,10 +36,9 @@ export async function POST(req: Request) {
     const hello: Post[] = await db.select().from(post)
     return new NextResponse("success", { status: 200 })
     // } catch (e) {
-    // return new NextResponse(`New error : ${e}`, { status: 500 });
     // }
   } catch (e) {
-    console.log(e);
+    return new NextResponse(`New error : ${e}`, { status: 500 });
   }
 }
 

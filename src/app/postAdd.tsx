@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import Img from 'next/image';
 import { SetStateAction } from "react";
 
+
 function PostAdd({ setList, setVis }: { setList: React.Dispatch<SetStateAction<any>>, setVis: React.Dispatch<SetStateAction<boolean>> }) {
   const emojiSchema = z.string().emoji().min(1).max(280);
 
@@ -27,7 +28,7 @@ function PostAdd({ setList, setVis }: { setList: React.Dispatch<SetStateAction<a
         userld: user?.id
       }
       setList((preValue: any) => [product, ...preValue]);
-      fetch("http://localhost:3000/api/mutate", {
+      fetch("/api/mutate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +57,7 @@ function PostAdd({ setList, setVis }: { setList: React.Dispatch<SetStateAction<a
     <>
       <div className=" rounded-b-3xl mx-auto  px-10 py-6 shadow" style={{ boxShadow: "0px 4px 10px 2px rgba(0,0,0,0.1)" }}>
         <div className="flex  items-center">
-          <Img className="w-14 h-14 rounded-full" width={56} height={56} alt="profilepic" src={user?.profileImageUrl as string} />
+          <img className="w-14 h-14 rounded-full" width={56} height={56} alt="profilepic" src={user?.profileImageUrl as string} />
           <h1 className="ml-4 text-xl">@{!!user?.username ? user?.username : user?.fullName?.replace(/\s+/g, '-')}</h1>
         </div>
         <form className="mt-4" onKeyDown={enterComm}>

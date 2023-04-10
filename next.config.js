@@ -1,11 +1,13 @@
+const webpack = require('webpack');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  targert : "serverless",
   experimental: {
     appDir: true,
-    esmExternals: true
+    serverComponentsExternalPackages: ["mysql2"],
   },
   images: {
-    domains: ['images.clerk.dev', "api.dicebear.com", "picsum.photos"],
+    domains: ['images.clerk.dev', "loremflickr.com"],
   },
 }
 

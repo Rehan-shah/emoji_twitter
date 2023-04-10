@@ -1,16 +1,14 @@
 import PostView from "./postView";
 import { post, Post } from "@/db/schema"
 import { db } from "@/db/db"
-import { currentUser, SignIn } from "@clerk/nextjs/app-beta";
 import { clerkClient } from "@clerk/nextjs/server";
-
+import { desc } from "drizzle-orm/expressions";
 
 export const dynamic = "force-dynamic";
 
 const HomePage = async () => {
-  let user = await currentUser();
-  let posts: Post[] = await db.select().from(post);
-
+  console.time("first paint")
+  let posts: Post[] = await db.select().from(post).orderBy(desc(post.createdAt), desc(post.id));
   let res: postJoin[] = await Promise.all(posts.map(async (post) => {
     let user = await clerkClient.users.getUser(post.userId)
     let userName;
@@ -23,9 +21,10 @@ const HomePage = async () => {
     }
   }))
 
+  console.timeEnd("first paint")
   return (
     <>
-      <PostView set={res} />
+     <PostView set={res} />
     </>
   )
 }
