@@ -3,6 +3,7 @@ import {post} from "@/db/schema";
 import { eq } from "drizzle-orm/expressions";
 import { clerkClient } from "@clerk/nextjs/server";
 import Post from "@/app/post";
+import { Back } from "@/app/erroMessage";
 
 
 async function hello({
@@ -18,9 +19,12 @@ let user = await clerkClient.users.getUser(selectedPost[0].userId);
 console.timeEnd("Fetch time")
 
 return (
+  <>
+  <Back />
   <div className="w-1/3 mx-auto border border-b-transparent">
     <Post content={selectedPost[0].content} userName={userName} date={selectedPost[0].createdAt.toString()} profilePic={user.profileImageUrl} userId={selectedPost[0].userId} id={selectedPost[0].id}/>
   </div>
+  </>
 )
 
 }

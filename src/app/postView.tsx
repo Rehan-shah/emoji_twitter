@@ -5,7 +5,8 @@ import { useState } from 'react'
 import Post from './post'
 import { SignOutButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs"
-import { listenerCount } from "process"
+import Error from "./erroMessage";
+import { AnimatePresence } from "framer-motion"
 
 
 interface postJoin {
@@ -25,6 +26,7 @@ function SignIn() {
   )
 }
 
+
 function Modal() {
   return (
     <div className="bg-red-200">Please only use emojis </div>
@@ -43,7 +45,9 @@ export default function Home({ set }: { set: postJoin[] }) {
       {/* {!!isSignedIn && <SignOutButton />} */}
       <div className='w-2/5 mx-auto border border-[#e6e7eb] border-b-transparent border-t-transparent'>
         {isSignedIn ? <PostAdd setList={setList} setVis={setVis} /> : <SignIn />}
-        {vis && <Modal />}
+        <AnimatePresence>
+        {vis && <Error setVis={setVis} />} 
+        </AnimatePresence>
         {lists.map((list, i) => <Post content={list.content} userId={list.userId} userName={list.userName} date={list.createdAt} profilePic={list.profilePic} id={list.id} key={i} />)} </div>
     </>
   )
