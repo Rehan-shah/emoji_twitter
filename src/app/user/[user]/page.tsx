@@ -5,6 +5,9 @@ import { eq } from 'drizzle-orm/expressions';
 import Post from "@/app/post";
 import { clerkClient } from "@clerk/nextjs/server";
  import { faker } from '@faker-js/faker'
+import { Back as BackButton } from "@/app/erroMessage";
+
+export const dynamic = "force-static";
 
 export default async function User({
   params,
@@ -19,6 +22,8 @@ export default async function User({
   let userName = "";
   (!!user.username ? userName = user.username : (userName = (user.firstName + "-" + user.lastName)));
   return (
+    <>
+    <BackButton />
     <div className="w-2/5 mx-auto border border-[#cccccc]">
       <div className="border-b-[#cccccc] border border-t-transparent border-l-transparent border-r-transparent ">
          <Img src={src} width={800} height={250} alt={"random image"} className="filter brightness-60 " />
@@ -31,5 +36,6 @@ export default async function User({
         ))
       }
     </div>
+    </>
   )
 }
