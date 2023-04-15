@@ -5,14 +5,13 @@ import { Dispatch, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 function Error({setVis} : { setVis : Dispatch<SetStateAction<boolean>>}) {
-    setTimeout(() =>{setVis(false)} , 2500)
+    setTimeout(() =>{setVis(false)} , 2300)
   return (
     <>
      <motion.div
     initial={{y:75}}
     animate={{ y: -50}}
     exit={{ y: 75}}
-    trasition={{duration : 1}}
     className="text-white bg-red-700 text-center rounded-lg absolute bottom-0 left-0 right-0 mx-auto py-3 text-xl w-64 z-50">
       Please input emojis only
     </motion.div>
