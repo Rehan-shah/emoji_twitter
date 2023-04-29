@@ -57,7 +57,7 @@ function PostAdd({ setList, setVis }: { setList: React.Dispatch<SetStateAction<a
     <>
       <div className=" rounded-b-3xl mx-auto  px-10 py-6 shadow" style={{ boxShadow: "0px 4px 10px 2px rgba(0,0,0,0.1)" }}>
         <div className="flex  items-center">
-          <img className="w-14 h-14 rounded-full" width={56} height={56} alt="profilepic" src={user?.profileImageUrl as string} />
+          <img className=" w-14 h-14 rounded-full" width={56} height={56} alt="profilepic" src={user?.profileImageUrl as string} />
           <h1 className="ml-4 text-xl">@{!!user?.username ? user?.username : user?.fullName?.replace(/\s+/g, '-')}</h1>
         </div>
         <form className="mt-4" onKeyDown={enterComm}>

@@ -1,10 +1,10 @@
-import { SignUp } from "@clerk/nextjs/app-beta";
+import { SignIn } from "@clerk/nextjs/app-beta";
 
 export default function Page() {
-  return <SignUp 
+  return <SignIn 
   appearance={{
     elements: {
       rootBox:"m-auto mt-40"
     }
-  }} signInUrl="/sign-in" />;
+  }} signUpUrl="/sign-up" />;
 }
