@@ -7,7 +7,8 @@ import { clerkClient } from "@clerk/nextjs/server";
  import { faker } from '@faker-js/faker'
 import { Back as BackButton } from "@/app/erroMessage";
 
-export const dynamic = "force-static";
+export const revalidate = false;
+
 
 export default async function User({
   params,
@@ -24,7 +25,7 @@ export default async function User({
   return (
     <>
     <BackButton />
-    <div className="w-2/5 mx-auto border border-[#cccccc]">
+    <div className="lg:w-2/5 w-full mx-auto border border-[#cccccc]">
       <div className="border-b-[#cccccc] border border-t-transparent border-l-transparent border-r-transparent ">
          <Img src={src} width={800} height={250} alt={"random image"} className="filter brightness-60 " />
          <img className="rounded-full ml-3 relative z-20 -top-14" src={user.profileImageUrl} width="110px" alt="profile pic" />

@@ -21,7 +21,7 @@ function Error({setVis} : { setVis : Dispatch<SetStateAction<boolean>>}) {
 
 export const Back = () => {
     return(
-      <div className="inline-block z-50 absolute m-2 text-lg ">
+      <div className="inline-block lg:z-50  lg:absolute m-2 text-lg ">
      <a href="/"><button className="bg-white border border-white p-2 rounded text-gray-700 flex items-center focus:outline-none focus:shadow-outline hover:border-black">
         <svg width="24" height="24" viewBox="0 0 16 16">
           <path d="M9 4 L5 8 L9 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />

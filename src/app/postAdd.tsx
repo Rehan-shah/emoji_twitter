@@ -64,11 +64,11 @@ function PostAdd({ setList, setVis }: { setList: React.Dispatch<SetStateAction<a
           <textarea
             id="content"
             ng-trim="false"
-            className="text-3xl text-bottom resize-none focus:outline-none"
+            className="text-3xl text-bottom resize-none focus:outline-none "
             name="content"
             placeholder="Type here"
             onKeyDown={handleKeyPress}
-            cols={20}
+            cols={10}
             rows={1}
           />
           <button className="bg-blue-500 hover:bg-blue-700 text-white text-md font-bold py-2 px-8 rounded-3xl my-3 mr-4 ml-auto block" onClick={HandleChange} type="reset"> Post </button>

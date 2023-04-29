@@ -34,7 +34,6 @@ function Modal() {
 }
 
 
-
 export default function Home({ set }: { set: postJoin[] }) {
   let { isSignedIn } = useAuth();
 
@@ -43,7 +42,7 @@ export default function Home({ set }: { set: postJoin[] }) {
   return (
     <>
       {/* {!!isSignedIn && <SignOutButton />} */}
-      <div className='w-2/5 mx-auto border border-[#e6e7eb] border-b-transparent border-t-transparent'>
+      <div className='lg:w-2/5 w-full mx-auto border border-[#e6e7eb] border-b-transparent border-t-transparent'>
         {isSignedIn ? <PostAdd setList={setList} setVis={setVis} /> : <SignIn />}
         <AnimatePresence>
         {vis && <Error setVis={setVis} />} 
