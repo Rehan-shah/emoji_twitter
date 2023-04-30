@@ -6,6 +6,7 @@ const inter = Inter({
   display: 'swap',
 })
 
+
 export const dynamicParams = true;
 import { ClerkProvider } from "@clerk/nextjs/app-beta";
 
@@ -13,8 +14,9 @@ export const metadata = {
   title: 'Emoji Twitter',
   description: 'twiitter but less angry ',
   icons: {
-      icon:"/favicon.png" 
-    }
+    icon: "/vercel.svg" ,
+    shortcut: "/favicon-32x32.png",
+  }
 }
 
 export default function RootLayout({

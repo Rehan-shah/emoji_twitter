@@ -12,12 +12,10 @@ async function hello({
 }: {
   params: { postId: string };
 }) {
-console.time("Fetch time") 
 let selectedPost = await db.select().from(post).where(eq(post.id , parseInt(params.postId)));
 let user = await clerkClient.users.getUser(selectedPost[0].userId);
   let userName = "";
   (!!user.username ? userName = user.username : (userName = (user.firstName + "-" + user.lastName)));
-console.timeEnd("Fetch time")
 
 return (
   <>

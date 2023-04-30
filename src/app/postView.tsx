@@ -20,7 +20,7 @@ interface postJoin {
 
 function SignIn() {
   return (
-    <div>
+    <div className="text-center text-lg py-4 border-b-[#e6e7eb] border border-r-transparent border-t-transparent border-l-transparent">
       <a href="/sign-up"><button>SignIn to tweet</button></a>
     </div>
   )

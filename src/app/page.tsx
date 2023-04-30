@@ -5,13 +5,12 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { desc } from "drizzle-orm/expressions";
 import { Suspense } from "react";
 import Loading from "./loading";
-
+import Head from "next/head";
 
 export const revalidate = 0;
 
 
 const HomePage = async () => {
-  console.time("first paint")
   let posts: Post[] = await db.select().from(post).orderBy(desc(post.createdAt), desc(post.id));
   let res: postJoin[] = await Promise.all(posts.map(async (post) => {
     let user = await clerkClient.users.getUser(post.userId)
@@ -24,8 +23,6 @@ const HomePage = async () => {
       userName: userName
     }
   }))
-
-  console.timeEnd("first paint")
   return (
     <>
     <Suspense fallback={<Loading />} >
